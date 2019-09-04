@@ -43,6 +43,9 @@ $(function () {
         height: 300,
         dialogClass: "dialog-full-mode" /*must to add this class name*/
     });
+    
+    //initiate the plugin
+    $(document).dialogfullmode(); 
 });
 </script>
  ``` 
