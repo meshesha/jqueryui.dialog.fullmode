@@ -1,8 +1,8 @@
 
 /**
  * jqueryui.dialog.fullmode.js
- * Ver. : 1.0.0 
- * last update: 03/09/2019
+ * Ver. : 1.1.0 
+ * last update: 28/09/2019
  * Author: meshesha , https://github.com/meshesha
  * LICENSE: MIT
  * url:https://meshesha.github.io/jqueryui.dialog.fullmode
@@ -102,8 +102,8 @@
             var dialogObj = dfmAry[dfmId];
 
             var scrollW = self.getScrollBarWidth()
-            var winWidth = $(window).width() - 2 * scrollW;
-            var winHeight = $(window).height() - 2 * scrollW;
+            var winWidth = $(window).width() - scrollW / 2;
+            var winHeight = $(window).height() - scrollW / 2;
 
             if (dialogObj.isFull == "1") {
                 dialogObj.isFull = "0";
@@ -181,5 +181,32 @@
             $outer.remove();
             return 100 - widthWithScroll;
         };
+
+        $(window).on("resize", function () {
+            var allDialogObjStr = sessionStorage.dfmObj;
+            if (allDialogObjStr !== undefined) {
+                var allDialogObj = JSON.parse(allDialogObjStr);
+                allDialogObj.forEach(function (itm) {
+                    if (itm.isFull == "1") {
+                        var itmID = itm.index;
+                        var dialogWin = $(".dialog-full-mode[dfm-id=" + itmID + "]");
+                        var contentWin = dialogWin.children(".ui-dialog-content");
+                        var titleBar = dialogWin.children(".ui-dialog-titlebar");
+
+                        var scrollW = self.getScrollBarWidth()
+                        var winWidth = $(window).width() - scrollW / 2;
+                        var winHeight = $(window).height() - scrollW / 2;
+
+                        dialogWin.width(winWidth);
+                        dialogWin.height(winHeight);
+
+                        $(contentWin).width(winWidth - 2 * scrollW);
+                        $(contentWin).height(winHeight - $(titleBar).outerHeight() - 2 * scrollW);
+
+                        //console.log(dialogWin)
+                    }
+                })
+            }
+        })
     }
 }(jQuery));
