@@ -10,7 +10,7 @@
 <img src="https://user-images.githubusercontent.com/18533793/64288721-74d3d200-cf6b-11e9-8b78-73486fdaf2b6.png" width="600">
 
 ### version:
-* 1.0.0
+* 1.1.0
 
 ### Demo
 * See demo <a href="https://meshesha.js.org/jqueryui.dialog.fullmode/" target="_blank">here</a>.
